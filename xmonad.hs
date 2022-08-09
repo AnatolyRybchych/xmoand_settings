@@ -58,7 +58,11 @@ myLayout = fullscreenFull tiled ||| Mirror tiled ||| Full
      ratio   = 1/2
      delta   = 3/100
 
-myManageHook = composeAll[ isFullscreen --> doFullFloat ]
+myManageHook = composeOne [
+  isKDETrayWindow -?> doIgnore,
+  transience,
+  isFullscreen -?> doFullFloat,
+  resource =? "stalonetray" -?> doIgnore]
 
 myEventHook = mempty
 
