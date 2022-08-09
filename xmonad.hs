@@ -3,6 +3,7 @@ import Data.Monoid
 import System.Exit
 import XMonad.Layout.Fullscreen
 import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.ManageHelpers
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -57,7 +58,7 @@ myLayout = fullscreenFull tiled ||| Mirror tiled ||| Full
      ratio   = 1/2
      delta   = 3/100
 
-myManageHook = composeAll[ ]
+myManageHook = composeAll[ isFullscreen --> doFullFloat ]
 
 myEventHook = mempty
 
