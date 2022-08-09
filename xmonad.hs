@@ -1,6 +1,8 @@
 import XMonad
 import Data.Monoid
 import System.Exit
+import XMonad.Layout.Fullscreen
+import XMonad.Hooks.EwmhDesktops
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -48,24 +50,21 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
                                        >> windows W.shiftMaster))
     ]
 
-myLayout = tiled ||| Mirror tiled ||| Full
+myLayout = fullscreenFull tiled ||| Mirror tiled ||| Full
   where
      tiled   = Tall nmaster delta ratio
      nmaster = 1
      ratio   = 1/2
      delta   = 3/100
 
-myManageHook = composeAll
-    [ className =? "MPlayer"        --> doFloat
-    , className =? "Gimp"           --> doFloat
-    , resource  =? "desktop_window" --> doIgnore
-    , resource  =? "kdesktop"       --> doIgnore ]
+myManageHook = composeAll[ ]
 
 myEventHook = mempty
 
 myLogHook = return ()
 
 myStartupHook = return ()
+
 
 main = xmonad def {
 -- simple stuff
