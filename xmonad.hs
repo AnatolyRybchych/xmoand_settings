@@ -4,6 +4,7 @@ import System.Exit
 import XMonad.Layout.Fullscreen
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageHelpers
+import XMonad.Layout.Monitor
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -68,7 +69,9 @@ myEventHook = mempty
 
 myLogHook = return ()
 
-myStartupHook = return ()
+myStartupHook = 
+  --disable eDP monitor if HDMI monitor connected and set refresh rate 120 hz
+  spawn "xrandr | grep \" connected \" | awk '{ print$1 }' | ( grep HDMI-1-1 && xrandr --output eDP-1-1 --off ; xrandr --output HDMI-1-1 --mode 1920x1080 --rate 120)"
 
 
 main = xmonad def {
