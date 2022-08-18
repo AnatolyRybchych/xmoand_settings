@@ -29,6 +29,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_k     ), windows W.swapUp    )
     , ((modm,               xK_h     ), sendMessage Shrink)
     , ((modm .|. shiftMask, xK_s     ), spawn "import ~/screenshot.png")
+    , ((modm .|. shiftMask, xK_n     ), spawn "nautilus ~/")
     , ((modm,               xK_l     ), sendMessage Expand)
     , ((modm,               xK_t     ), withFocused $ windows . W.sink)
     , ((modm              , xK_comma ), sendMessage (IncMasterN 1))
