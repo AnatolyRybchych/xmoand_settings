@@ -11,7 +11,7 @@ import System.Process
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
-term = "(tilda -c \"fish -c clear\")"
+term = "gnome-terminal"
 
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
